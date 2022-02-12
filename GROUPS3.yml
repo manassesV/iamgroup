@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+   GroupName:
+       Description: Group Name of iam Group
+       Type: String
+Resources:
+   IamGroup:
+      Type: AWS::IAM::Group
+      Properties:
+         GroupName: !Ref GroupName
+         Path: /
+         Policies:
+           - PolicyName: !Join
+                - ''
+                - - 'policyiamgroup'
+                  - 'iamuser'
+             PolicyDocument:
+               Version: 2012-10-17
+               Statement:
+                  - Effect: Allow
+                    Action:
+                        - 'cloudformation:Describe*'
+                        - 'cloudformation:List*'
+                        - 'cloudformation:Get*'
+                    Resource: '*'
+
+
+
+            
+   
